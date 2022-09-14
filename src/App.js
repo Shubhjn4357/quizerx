@@ -10,21 +10,18 @@ function App() {
   const navigate=useNavigate();
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
-      if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         if(user.emailVerified){
-          navigate("/dashboard/teacher")
+          console.log("verified")
         }
         else{
-          navigate("/form/student/402")
+          
+          navigate("/verify")
+          console.log("please verify to proceed")
         }
         // ...
-      } else {
-        // User is signed out
-        // ...
-console.log("not verified")
-      }
+
     });
   },[navigate])
   return (
