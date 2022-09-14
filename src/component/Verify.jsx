@@ -1,6 +1,7 @@
 import {sendEmailVerification} from "firebase/auth";
 import {auth} from "../firebase.config";
 import {useState} from "react";
+import {Link} from "react-router-dom";
 const Verify=()=>{
   const [state,setState] =useState(false)
   const SendLink=()=>{
