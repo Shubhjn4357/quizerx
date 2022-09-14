@@ -12,16 +12,13 @@ function App() {
     onAuthStateChanged(auth, (user) => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        if(user.emailVerified){
-          console.log("verified")
+        if(user){
+          console.log("welcome")
         }
         else{
-          
-          navigate("/verify")
-          console.log("please verify to proceed")
+          navigate("/auth/login/teacher")
         }
         // ...
-
     });
   },[navigate])
   return (

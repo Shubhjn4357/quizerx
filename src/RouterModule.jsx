@@ -4,13 +4,11 @@ import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
 import Dashboard from "./component/Dashboard";
 import Forms from "./component/Forms";
-import Verify from "./component/Verify";
 import Preview from "./component/Preview";
 const RouterModule=()=>{
   return (<>
   <Routes>
     <Route exact path="/" element={<Category/>}/>
-    <Route exact path="/verify" element={<Verify/>}/>
     <Route exact path="/dashboard/teacher" element={<Dashboard/>}/>
     <Route exact path="/form/student/:id" element={<Forms/>}/>
     <Route exact path="/preview/:link" element={<Preview/>}/>
