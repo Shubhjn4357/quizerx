@@ -15,9 +15,7 @@ function App() {
         if(user){
           console.log("welcome")
         }
-        else{
-          navigate("/auth/login/teacher")
-        }
+        
         // ...
     });
   },[navigate])
