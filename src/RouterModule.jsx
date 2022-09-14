@@ -4,7 +4,7 @@ import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
 import Dashboard from "./component/Dashboard";
 import Forms from "./component/Forms";
-import Verify from "./component/verify";
+import Verify from "./component/Verify";
 import Preview from "./component/Preview";
 const RouterModule=()=>{
   return (<>
