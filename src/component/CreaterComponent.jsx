@@ -51,9 +51,10 @@ const CreaterComponent=()=>{
     console.log(error)
   }
  }
+ console.log(State)
   return(<>
   <form onSubmit={Submit}>
-  <span className="btn btn-warning"><Link className={`${Pid?"d-block":"d-none"} text-decoration-none`} to={`/preview/${Pid}`}>Preview</Link></span>
+  <span className="btn btn-warning"><Link className={`${Pid?"d-block":"d-none"} text-decoration-none`} to={`/form/student/${Pid}`}>Preview</Link></span>
     <div className="flex items-center flex-wrap justify-center">
         {State.data.map((item,index)=>{
          return( <div key={index} className="mb-6 mt-3 my-2 p-2 card">
@@ -62,7 +63,7 @@ const CreaterComponent=()=>{
             <option value="mcq">MCQ</option>
             <option value="textbase">TextBase</option>
           </select>
-          {item.type==="mcq"?<Mcq question={(e)=>HandleQuestion(e,index)}/>:<TextBase question={(e)=>HandleQuestion(e)}/>}
+          {item.type==="mcq"?<Mcq question={(e)=>HandleQuestion(e,index)}/>:<TextBase question={(e)=>HandleQuestion(e,index)}/>}
           </div>)})}
     </div>
  
