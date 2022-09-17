@@ -5,8 +5,9 @@ import Mcq from "./Mcq"
 import TextBase from "./TextBase"
 import {Link} from "react-router-dom";
 const CreaterComponent=()=>{
- 
+
   const [State,setState]=useState({
+    title:"",
     data:[
     { type:"mcq"
   }]})
@@ -41,7 +42,7 @@ const CreaterComponent=()=>{
  }
  const Submit=(e)=>{
    e.preventDefault();
-   e.stopPropagation()
+   e.stopPropagation();
   const userId=new Date().getUTCMilliseconds();
   try{
      set(ref(database, 'users/' + userId),State);
@@ -51,11 +52,20 @@ const CreaterComponent=()=>{
     console.log(error)
   }
  }
- console.log(State)
+ const HandleTitle=(e)=>{
+   setState({...State,
+   [e.target.name]:e.target.value})
+ }
   return(<>
   <form onSubmit={Submit}>
-  <span className="btn btn-warning"><Link className={`${Pid?"d-block":"d-none"} text-decoration-none`} to={`/form/student/${Pid}`}>Preview</Link></span>
+  <span className={`${Pid?"d-block":"d-none"} btn btn-warning`}><Link className="text-decoration-none text-info" to={`/form/student/${Pid}`}>Preview</Link></span>
     <div className="flex items-center flex-wrap justify-center">
+    <div className="card my-2 p-2">
+      <span className="fs-5">Title</span>
+      <div className="my-1">
+        <input className="form-control" type="text" name="title" value={State.title} onChange={HandleTitle} placeholder="Title For Form" required />
+      </div>
+    </div>
         {State.data.map((item,index)=>{
          return( <div key={index} className="mb-6 mt-3 my-2 p-2 card">
           <select className="form-select" value={item.type} name="type" onChange={(e)=>HandleState(e,index)} aria-label="Select Type">

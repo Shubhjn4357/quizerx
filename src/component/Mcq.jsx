@@ -67,6 +67,7 @@ const Remove=(itemId)=> {
               name="question"
               className="form-control block w-75 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="question"
+              value={State.question}
               placeholder="enter your question"
               onChange={HandleState}
               required
@@ -74,6 +75,7 @@ const Remove=(itemId)=> {
             <input
               type="number"
               name="point"
+              value={State.point}
               className="form-control block w-25 px-2 py-1 text-sm font-light text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="point"
               placeholder="Points"
@@ -85,7 +87,7 @@ const Remove=(itemId)=> {
             
             return (
            <div className="m-2 form-check" key={index}>
-          <input className="form-check-input" type="radio" onChange={(e)=>HandleChecked(e,Object.keys(item)[0],"checked")} name="checked" id="flexRadioDefault1"/>
+          <input className="form-check-input" type="radio" value={item.checked} onChange={(e)=>HandleChecked(e,Object.keys(item)[0],"checked")} name="checked" id="flexRadioDefault1"/>
           <label className="form-check-label" htmlFor="flexRadioDefault1">
                     <input 
                       type="text"

@@ -1,11 +1,12 @@
-import {useParams} from "react-router-dom";
+import {useParams,useNavigate} from "react-router-dom";
 import {useState,useEffect} from "react";
-import { ref, child, get } from "firebase/database";
-import {database} from "../firebase.config"
+import { ref, child,set, get } from "firebase/database";
+import {database} from "../firebase.config";
 const Forms=()=>{
-  const {id} =useParams()
-  const [Ques,setQues]=useState({})
-  const [Answers,setAns]=useState({})
+  const {id} =useParams();
+  const navigate=useNavigate();
+  const [Ques,setQues]=useState({});
+  const [Answers,setAns]=useState({});
   useEffect(()=>{
     const GetQues=()=>{
       const dbRef = ref(database);
@@ -43,12 +44,24 @@ const Forms=()=>{
   }
  const HandleName=(e)=>{
    setAns({...Answers,
-           name:e.target.name
+           name:e.target.value
             })
  }
-  console.log(Answers)
+ const Submit=(e)=>{
+   e.preventDefault();
+   e.stopPropagation();
+   const userId=new Date().getUTCMilliseconds();
+  try{
+     set(ref(database, 'Student/' + userId),Answers);
+     navigate("/thanx")
+  }
+  catch(error){
+    console.log(error)
+  }
+ }
   return (<>
-  <form className="flex items-center flex-column justify-center">
+  <form onSubmit={Submit} className="flex items-center flex-column justify-center">
+  <h3 className="m-auto p-2 fw-bold">{Ques?.title}</h3>
   <div className="w-full">
    <div className="card d-block p-2 m-2">
      <div className="d-flex my-2">
@@ -88,7 +101,7 @@ const Forms=()=>{
     </div>
   }
   </div>})}
-   <button type="submit" className="ms-2 me-auto my-4 rounded-pill btn btn-warning">Submit</button>
+   <span className="ms-2 me-auto my-4 rounded-pill btn btn-warning" onClick={Submit}>Submit</span>
   </form>
   </>)
 }
