@@ -1,13 +1,13 @@
-import {useParams,Link,useNavigate} from "react-router-dom";
+import {Link,useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {createUserWithEmailAndPassword,sendEmailVerification} from "firebase/auth";
 import {auth} from "../firebase.config";
 
 const SignUp=()=>{
-  const {cat} =useParams();
+  
   const navigate =useNavigate();
   const [State,setState] =useState({
-    email:"",password:""
+    email:"",password:"",checked:false
   });
   const HandleState=(e)=>{
     setState({...State,
@@ -20,17 +20,16 @@ createUserWithEmailAndPassword(auth,State.email,State.password)
     // Signed in 
     const user = userCredential.user;
     // ...
-    if(user){
-      navigate(`/dashboard/${cat}`)
-    }
-    if(cat==="teacher"){
-      sendEmailVerification(auth.currentUser)
+    sendEmailVerification(auth.currentUser)
         .then((x) => {         
           // Email verification sent!
           // ...
           console.log("sent email")
         });
+    if(user){
+      navigate(`/`)
     }
+      
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -133,6 +132,7 @@ createUserWithEmailAndPassword(auth,State.email,State.password)
             <div className="form-group form-check">
               <input
                 type="checkbox"
+                onChange={(e)=>setState({...State,checked:e.target.checked})}
                 className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 id="exampleCheck2"
               />
@@ -152,7 +152,7 @@ createUserWithEmailAndPassword(auth,State.email,State.password)
             <p className="text-sm font-semibold mt-2 pt-1 mb-0">
               Already have an account?
               <Link
-                to={`/auth/login/${cat}`}
+                to={`/auth/login/teacher`}
                 className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
                 >Login</Link>
             </p>

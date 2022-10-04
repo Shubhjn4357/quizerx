@@ -1,21 +1,24 @@
-import {Routes,Route} from "react-router-dom";
-import Category from "./auth/Category";
-import Login from "./auth/Login";
-import SignUp from "./auth/SignUp";
-import Dashboard from "./component/Dashboard";
-import Forms from "./component/Forms";
-import Thanx from "./component/Thanx";
-
+import { Suspense,lazy } from 'react';
+import {Route,Navigate,Routes} from"react-router-dom";
+const Forms =lazy(()=>import("./component/Forms"));
+const FormError=lazy(()=> import("./component/FormError"));
+const Thanx=lazy(()=> import("./component/Thanx"));
+const CreaterComponent=lazy(()=> import("./component/CreaterComponent"));
+const GetListOfData=lazy(()=> import("./component/GetListOfData"));
+const NotFound =lazy(()=>import("./auth/NotFound"));
 const RouterModule=()=>{
-  return (<>
-  <Routes>
-    <Route exact path="/" element={<Category/>}/>
-    <Route exact path="/dashboard/teacher" element={<Dashboard/>}/>
-    <Route exact path="/thanx" element={<Thanx/>}/>
-    <Route exact path="/form/student/:id" element={<Forms/>}/>
-    <Route exact path="/auth/login/:cat" element={<Login/>}/>
-    <Route exact path="/auth/signup/:cat" element={<SignUp/>}/>
-  </Routes>
-  </>)
+  return (<Routes>
+    <Route  path="/list/ques" element={<Suspense fallback={"Loading..."}><GetListOfData/></Suspense>}/>
+    <Route  path="/create" element={<Suspense fallback={"Loading..."}><CreaterComponent/></Suspense>}/>
+    <Route  path="/thanx" element={<Suspense fallback={"Loading..."}><Thanx/></Suspense>}/>
+    <Route  path="/form/student/:id" element={<Suspense fallback={"Loading..."}><Forms/></Suspense>}/>
+    <Route  path="/formError" element={<Suspense fallback={"Loading..."}><FormError/></Suspense>}/>
+    <Route
+        path="/"
+        element={<Navigate to="/create" replace />}
+    />
+   <Route path="*" element={<Suspense fallback={<>"Loading..."</>}><NotFound/></Suspense>}/>
+ 
+  </Routes>)
 }
 export default RouterModule;

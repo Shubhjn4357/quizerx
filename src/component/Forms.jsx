@@ -14,14 +14,14 @@ const Forms=()=>{
         if (snapshot.exists()) {
           setQues(snapshot.val());
         } else {
-          console.log("No data available");
+          navigate("/FormError")
         }
       }).catch((error) => {
         console.error(error);
       });
     }
     GetQues();
-  },[id])
+  },[id,navigate])
   const HandleAns=(e,index,obj,ques)=>{
     if(ques){
          setAns({...Answers,
@@ -60,7 +60,7 @@ const Forms=()=>{
   }
  }
   return (<>
-  <form onSubmit={Submit} className="flex items-center flex-column justify-center">
+ <form onSubmit={Submit} className="flex items-center flex-column justify-center">
   <h3 className="m-auto p-2 fw-bold">{Ques?.title}</h3>
   <div className="w-full">
    <div className="card d-block p-2 m-2">
