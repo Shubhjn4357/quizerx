@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[530],{530:function(e,n,s){s.r(n);var a=s(184);n.default=function(){return(0,a.jsx)("div",{className:"vh-100 d-flex justify-center items-center",children:(0,a.jsxs)("div",{className:"card mx-2 bg-info p-2 text-center align-center justify-center",children:[(0,a.jsx)("span",{className:"fw-bold text-warning w-full fs-3",children:"No Data Found"}),(0,a.jsx)("span",{className:"fw-bold fs-3",children:"Get Link from Your Organization"})]})})}}}]);
+//# sourceMappingURL=530.c6fba706.chunk.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/420.48be280e.chunk.js","mappings":"wHAGA,UAHe,WACb,OAAQ,0CACT,C","sources":["auth/NotFound.jsx"],"sourcesContent":["const NotFound=()=>{\n  return (<>notfound</>)\n}\nexport default NotFound;"],"names":[],"sourceRoot":""}
